@@ -1,13 +1,7 @@
-FROM openjdk:8-alpine
+FROM ubuntu:18.04
 
 # Required for starting application up.
-RUN apk update && apk add /bin/sh
-
-RUN mkdir -p /opt/app
-ENV PROJECT_HOME /opt/app
-
-COPY target/spring-boot-mongo-1.0.jar $PROJECT_HOME/spring-boot-mongo.jar
-
-WORKDIR $PROJECT_HOME
+RUN apt-get update -y
+RUN apt-get install nginx -y
 EXPOSE 8080
-CMD ["java" ,"-jar","./spring-boot-mongo.jar"]
+CMD ["nginx", "file"]
